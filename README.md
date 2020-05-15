@@ -17,4 +17,4 @@ Open in browser:
 localhost:8888
 ```
 
-You are now ready to execute code within the Jupyter environment.
+Open `Juptyer/CoLlage.ipynb` to begin working.
