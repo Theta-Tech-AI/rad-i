@@ -8,18 +8,22 @@ for i= k+1:k+r
     for j= k+1:k+c
         pixel_start_r=i;
         pixel_start_c=j;
-        G_x=[];G_y=[];
-        for a= pixel_start_r-k:pixel_start_r+k
-            for b= pixel_start_c-k:pixel_start_c+k
-                
-                G_x=[G_x;Fx_o(a,b)];
-                G_y=[G_y;Fy_o(a,b)];
-                
-            end
-        end
+        G_x = Fx_o(pixel_start_r-k:pixel_start_r+k,pixel_start_c-k:pixel_start_c+k);
+        G_y = Fy_o(pixel_start_r-k:pixel_start_r+k,pixel_start_c-k:pixel_start_c+k);
+        G_x = G_x(:);
+        G_y = G_y(:);
+##        G_x=[];G_y=[];
+##        for a= pixel_start_r-k:pixel_start_r+k
+##            for b= pixel_start_c-k:pixel_start_c+k
+##                
+##                G_x=[G_x;Fx_o(a,b)];
+##                G_y=[G_y;Fy_o(a,b)];
+##                
+##            end
+##        end
         
        G=[G_x G_y];
-       [U, S, V2]=svd(G);
+       %[U, S, V2]=svd(G);
        V = ComputeV(G);
        dominant_orientation=atan2(V(1,1),V(1,2)); %Find dominant direction
        
