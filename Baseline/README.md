@@ -10,3 +10,6 @@ mask = imread('../../sample_data/ImageMask.png')
 mask = mask(:,:,1);
 imshow(raw_image);
 ```
+
+
+compute_CoLlAGe2D(raw_image, mask, 5, 5)
