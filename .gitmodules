@@ -1,0 +1,3 @@
+[submodule "Baseline/cpp_slicer_plugin"]
+	path = Baseline/cpp_slicer_plugin
+	url = https://github.com/ccipd/CoLlAGeSlicerExtension.git
