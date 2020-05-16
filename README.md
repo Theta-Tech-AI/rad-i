@@ -8,8 +8,13 @@ git clone https://github.com/Toth-Technology/rad-i && cd rad-i
 ## Docker
 
 Install docker, then run:
+### Linux:
 ```
-docker run -it -p 8888:8888 -v ${pwd}:/root nathanhillyer/ml-base jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token= --notebook-dir='/root'
+docker run -it -p 8888:8888 -v $PWD:/root nathanhillyer/ml-base
+```
+### Windows:
+```
+docker run -it -p 8888:8888 -v ${PWD}:/root nathanhillyer/ml-base
 ```
 
 Open in browser:
