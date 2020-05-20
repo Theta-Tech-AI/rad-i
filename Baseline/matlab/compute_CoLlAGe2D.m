@@ -37,6 +37,8 @@ y2=c_max;
 % y2 =  round(max(pos(:,1)));
 %I2 = I.*uint8(BW); % apply mask to image
 
+disp('Calculating gradient:');
+
 if (x1-winRadius<1) || (y1-winRadius<1) || (x2+winRadius>size(I,1)) || (y2+winRadius>size(I,2))
     warning('COLLAGE: Gradient would go outside image border. Cannot compute CoLlAGe - Please erode mask. Returning NANs');
     collage_map = nan([size(mask),max(haralick_number)]);
@@ -54,7 +56,14 @@ end
 %[Fx, Fy]=gradient(I2_double_outer);
 %K_roi=sqrt(Fx.*Fx+Fy.*Fy);
 
+disp('Calculating gradient done.');
+disp('Calculating orientation:');
+
 [dominant_orientation_roi]=find_orientation_CoLlAGe_2D(Gx,Gy,winRadius,r,c);
+
+disp('Calculating orientation done.');
+disp('Calculating Haralick:');
+
 BW1=mask(x1:x2,y1:y2);
 BW1=double(BW1);
 
@@ -137,7 +146,4 @@ collage_map(x1:x2,y1:y2,haralick_number) = volfeats(:,:,haralick_number);
 % 
 % 
 
-
-
-
-
+disp('Calculating Haralick done.');
