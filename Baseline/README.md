@@ -3,13 +3,33 @@ This contains code from ccipd to use as a benchmark/baseline for expected collag
 
 # Usage
 ## Matlab/Octave
+
+Load:
 ```
 cd Baseline/matlab;
 raw_image = imread('../../sample_data/ImageSlice.png');
-mask = imread('../../sample_data/ImageMask.png')
+mask = imread('../../sample_data/ImageMask.png');
 mask = mask(:,:,1);
-imshow(raw_image);
 ```
 
+Calculate:
+```
+collage = compute_CoLlAGe2D(raw_image, mask, 5, 6);
+```
 
-compute_CoLlAGe2D(raw_image, mask, 5, 5)
+Display:
+```
+close all;
+
+figure; imshow(raw_image);
+title('Image');
+axis on;
+
+figure; imagesc(mask);
+title('Mask');
+
+figure;
+imagesc(collage(:,:,end));
+colorbar;
+title('Collage');
+```
