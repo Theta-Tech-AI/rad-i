@@ -33,6 +33,9 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         tqdm \
         imageio \
         && \
+    $PIP_INSTALL \
+        pyradiomics \
+        && \
 # ==================================================================
 # jupyter
 # ------------------------------------------------------------------
