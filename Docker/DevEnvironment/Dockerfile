@@ -35,6 +35,8 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         && \
     $PIP_INSTALL \
         pyradiomics \
+        mahotas \
+        eo-learn-features \
         && \
 # ==================================================================
 # jupyter
