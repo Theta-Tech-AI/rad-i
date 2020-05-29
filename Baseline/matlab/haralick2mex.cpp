@@ -251,19 +251,34 @@ void haralick2(double *image, double *haralicks, int ws, int dist, int graylevel
              */
             
             /* Put feature values in output volume */
+            
+            /*
+            unconfirmed/unchecked
+            0,1,3,8
+            angular second moment
+            contrast
+            sum of squares variance
+            entropy
+            */
+            
+            // these are unknown
             haralicks[i+j*rows+0*rows*cols]=entropyval;
             haralicks[i+j*rows+1*rows*cols]=energyval;
-            haralicks[i+j*rows+2*rows*cols]=inertiaval;
-            haralicks[i+j*rows+3*rows*cols]=idmval;
-            haralicks[i+j*rows+4*rows*cols]=correlationval;
-            haralicks[i+j*rows+5*rows*cols]=info1val;
-            haralicks[i+j*rows+6*rows*cols]=info2val;
-            haralicks[i+j*rows+7*rows*cols]=saval;
-            haralicks[i+j*rows+8*rows*cols]=svval;
-            haralicks[i+j*rows+9*rows*cols]=seval;
-            haralicks[i+j*rows+10*rows*cols]=daval;
-            haralicks[i+j*rows+11*rows*cols]=dvval;
-            haralicks[i+j*rows+12*rows*cols]=deval;
+            haralicks[i+j*rows+3*rows*cols]=inertiaval;
+            haralicks[i+j*rows+8*rows*cols]=daval;
+
+            // these should correlate to mahotas and original paper #'s
+            haralicks[i+j*rows+2*rows*cols]=correlationval;
+
+            haralicks[i+j*rows+4*rows*cols]=idmval;
+            haralicks[i+j*rows+5*rows*cols]=saval;
+            haralicks[i+j*rows+6*rows*cols]=svval;
+            haralicks[i+j*rows+7*rows*cols]=seval;
+
+            haralicks[i+j*rows+9*rows*cols]=dvval;
+            haralicks[i+j*rows+10*rows*cols]=deval;
+            haralicks[i+j*rows+11*rows*cols]=info1val;
+            haralicks[i+j*rows+12*rows*cols]=info2val;
             
             } else {
                 for (k=0; k<nharalicks; k++) haralicks[i+j*rows+k*rows*cols]=0;
@@ -291,7 +306,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     mwSize dims[3];
     int nharalicks=13;
     //unsigned short int *X;
-    mexPrintf("\haralick2mex called.\n");
+    mexPrintf("\nharalick2mex called.\n");
 	
     if(nrhs > 5 || nrhs < 4)
         mexErrMsgTxt("haralick2mex(image,graylevels,ws,dist,[background])");
