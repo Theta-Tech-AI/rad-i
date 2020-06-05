@@ -1,5 +1,5 @@
 
-function [collage_map, volfeats, Gx, Gy, dominant_orientation_roi]=compute_CoLlAGe2D(origImage, tumorMask, winRadius,haralick_number)
+function [collage_map, volfeats, Gx, Gy, dominant_orientation_roi, volN]=compute_CoLlAGe2D(origImage, tumorMask, winRadius,haralick_number)
 %close all
 % Med_entropy=[];
 % Mean_entropy=[];
