@@ -5,14 +5,16 @@ mask = zeros(size(raw_image));
 
 % prepare patch
 svd_window_size = 5
-patch_window_width = 47
-patch_window_height = 41
+patch_window_width = 50
+patch_window_height = 50 
 mask_min_x = 252
 mask_min_y = 193
+mask_min_x = mask_min_x +1
+mask_min_y = mask_min_y +1
 mask_max_x = mask_min_x + patch_window_width - 1
 mask_max_y = mask_min_y + patch_window_height - 1
-haralick_window_size = svd_window_size * 2 + 1
 
+mask(mask_min_y:mask_max_y, mask_min_x:mask_max_x) = 1;
 cropped_array = raw_image(mask_min_y:mask_max_y, mask_min_x:mask_max_x, :);
 
 % show patch
@@ -30,3 +32,24 @@ subplot(1,2,2);
 imagesc(cropped_array);
 colormap gray;
 colorbar
+
+% calculate collage
+haralick_number = 13
+[collage_map, volfeats, Gx, Gy, dominant_orientation_roi]=compute_CoLlAGe2D(raw_image, mask, svd_window_size, haralick_number);
+
+% display gradients
+figure;
+subplot(1,2,1);
+imagesc(Gx);
+colormap jet; colorbar;
+title('Gx');
+subplot(1,2,2);
+imagesc(Gy);
+colormap jet; colorbar;
+title('Gy');
+
+% display dominant angles
+figure;
+imagesc(dominant_orientation_roi);
+colormap jet; colorbar;
+title('Dominant Angles (SVD)')
