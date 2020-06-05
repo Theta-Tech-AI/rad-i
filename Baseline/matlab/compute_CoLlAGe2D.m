@@ -1,5 +1,5 @@
 
-function [collage_map, volfeats]=compute_CoLlAGe2D(origImage, tumorMask, winRadius,haralick_number)
+function [collage_map, volfeats, Gx, Gy, dominant_orientation_roi]=compute_CoLlAGe2D(origImage, tumorMask, winRadius,haralick_number)
 %close all
 % Med_entropy=[];
 % Mean_entropy=[];
@@ -47,11 +47,11 @@ if (x1-winRadius<1) || (y1-winRadius<1) || (x2+winRadius>size(I,1)) || (y2+winRa
     return
 end
 
-    I2_outer = I(max(x1-winRadius,1):min(x2+winRadius,size(I,1)),max(y1-winRadius,1):min(y2+winRadius,size(I,2)));
-    I2_double_outer=im2double(I2_outer);
-    I2_inner=I(x1:x2,y1:y2);
-    [r, c]=size(I2_inner);
-    [Gx, Gy]=gradient(I2_double_outer);
+I2_outer = I(max(x1-winRadius,1):min(x2+winRadius,size(I,1)),max(y1-winRadius,1):min(y2+winRadius,size(I,2)));
+I2_double_outer=im2double(I2_outer);
+I2_inner=I(x1:x2,y1:y2);
+[r, c]=size(I2_inner);
+[Gx, Gy]=gradient(I2_double_outer);
 
 %[Fx, Fy]=gradient(I2_double_outer);
 %K_roi=sqrt(Fx.*Fx+Fy.*Fy);
