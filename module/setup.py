@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="rad-i",
-    version="0.0.2",
+    name="collage",
+    version="0.0.1",
     author="Toth Technology",
     author_email="toth-tech@hillyer.me",
     description="CoLliage Implementation",
