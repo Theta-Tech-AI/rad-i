@@ -1,9 +1,0 @@
-README.md
-setup.py
-rad-i/__init__.py
-rad-i/collage/__init__.py
-rad-i/collage/collage.py
-rad_i.egg-info/PKG-INFO
-rad_i.egg-info/SOURCES.txt
-rad_i.egg-info/dependency_links.txt
-rad_i.egg-info/top_level.txt
