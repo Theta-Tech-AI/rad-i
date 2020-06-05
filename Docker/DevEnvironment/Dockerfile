@@ -38,6 +38,7 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         mahotas \
         eo-learn-features \
         && \
+    python -m pip install -i https://test.pypi.org/simple/ rad-i
 # ==================================================================
 # jupyter
 # ------------------------------------------------------------------
