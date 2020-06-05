@@ -1,7 +1,0 @@
-README.md
-setup.py
-rad-i/__init__.py
-toth_technology.egg-info/PKG-INFO
-toth_technology.egg-info/SOURCES.txt
-toth_technology.egg-info/dependency_links.txt
-toth_technology.egg-info/top_level.txt
