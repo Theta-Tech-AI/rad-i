@@ -48,6 +48,8 @@ void graycomtx(const double *image, double *comtx, int ws, int dist,
     block_end_row = min(rows-1, row+hws);
     block_end_col = min(cols-1, col+hws);
     
+    //mexPrintf("\nstart_row, start_col, end_row, end_col = %i, %i, %i, %i \n", block_start_row, block_start_col, block_end_row, block_end_col);
+    
     for (j = block_start_col; j < block_end_col; j++)  {
         for (i = block_start_row; i < block_end_row; i++) {
             centerind=i+j*rows;
@@ -64,6 +66,7 @@ void graycomtx(const double *image, double *comtx, int ws, int dist,
             for (l = d_start_col; l <= d_end_col; l++) {
                 for (k = d_start_row; k <= d_end_row; k++) {
                     pixind=k+l*rows;
+                    //if (row == 0 && col == 0) mexPrintf("\nl, k = %i, %i\n", l, k);
                     if (!isnan(image[pixind]) && (image[pixind]!=background)) {
 						//if ((dist==0) || (pixind!=centerind)) //either dist=0 or exclude dist=0
                         comtx[center_value + (int) (image[pixind]+0.5)*graylevels] += 1;
@@ -74,12 +77,20 @@ void graycomtx(const double *image, double *comtx, int ws, int dist,
 	}
 
 	//testing purposes
-   /* for (i = 0; i < graylevels*graylevels; i++) {
+  /*
+  int sum = 0;
+  for (i = 0; i < graylevels*graylevels; i++) {
+    sum += comtx[i];
+  }
+  mexPrintf("\nx, y, Sum = %i, %i, %i", col, row, sum);
+  
+  for (i = 0; i < graylevels*graylevels; i++) {
        if ((int) comtx[i] != 0)
            mexPrintf("\nWith window centered at: [%i][%i]: comtx[%i]=%i",row,col,i,(int) comtx[i]);
     }
    mexPrintf(" (all else zeros)\n");   
-   */
+  */
+  
 }
 		
 void haralick2(double *image, double *haralicks, int ws, int dist, int graylevels, int background, int rows, int cols, int nharalicks) {
@@ -252,29 +263,16 @@ void haralick2(double *image, double *haralicks, int ws, int dist, int graylevel
             
             /* Put feature values in output volume */
             
-            /*
-            unconfirmed/unchecked
-            0,1,3,8
-            angular second moment
-            contrast
-            sum of squares variance
-            entropy
-            */
-            
-            // these are unknown
-            haralicks[i+j*rows+0*rows*cols]=entropyval;
-            haralicks[i+j*rows+1*rows*cols]=energyval;
-            haralicks[i+j*rows+3*rows*cols]=inertiaval;
-            haralicks[i+j*rows+8*rows*cols]=daval;
-
-            // these should correlate to mahotas and original paper #'s
+            // these should correlate to mahotas python library and original paper #'s
+            haralicks[i+j*rows+0*rows*cols]=energyval;
+            haralicks[i+j*rows+1*rows*cols]=daval;
             haralicks[i+j*rows+2*rows*cols]=correlationval;
-
+            haralicks[i+j*rows+3*rows*cols]=inertiaval;
             haralicks[i+j*rows+4*rows*cols]=idmval;
             haralicks[i+j*rows+5*rows*cols]=saval;
             haralicks[i+j*rows+6*rows*cols]=svval;
             haralicks[i+j*rows+7*rows*cols]=seval;
-
+            haralicks[i+j*rows+8*rows*cols]=entropyval;
             haralicks[i+j*rows+9*rows*cols]=dvval;
             haralicks[i+j*rows+10*rows*cols]=deval;
             haralicks[i+j*rows+11*rows*cols]=info1val;
