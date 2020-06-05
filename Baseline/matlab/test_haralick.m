@@ -1,12 +1,18 @@
+clear all;
+clear haralickfun
+clear haralick2mex
+mex haralick2mex.cpp
+haralickfun=@haralick2mex
+
 % load image
 raw_image = imread('../../sample_data/ImageSlice.png');
 raw_image = raw_image(:,:,1);
 mask = zeros(size(raw_image));
 
 % prepare patch
-svd_window_size = 5
-patch_window_width = 50
-patch_window_height = 50 
+svd_radius = 5
+patch_window_width = 30
+patch_window_height = 30
 mask_min_x = 252
 mask_min_y = 193
 mask_min_x = mask_min_x +1
@@ -35,7 +41,7 @@ colorbar
 
 % calculate collage
 haralick_number = 13
-[collage_map, volfeats, Gx, Gy, dominant_orientation_roi]=compute_CoLlAGe2D(raw_image, mask, svd_window_size, haralick_number);
+[collage_map, volfeats, Gx, Gy, dominant_orientation_roi, volN]=compute_CoLlAGe2D(raw_image, mask, svd_radius, haralick_number);
 
 % display gradients
 figure;
@@ -52,4 +58,19 @@ title('Gy');
 figure;
 imagesc(dominant_orientation_roi);
 colormap jet; colorbar;
-title('Dominant Angles (SVD)')
+title('Dominant Angles (SVD)');
+
+% display vol features
+figure
+imagesc(volN)
+title('Color-binned Angles')
+colormap jet; colorbar;
+
+% manually test haralick
+figure;
+for i = 1:13
+  subplot(3,5,i);
+  imagesc(volfeats(:,:,i));
+  colormap jet; colorbar;
+  title(['Har' num2str(i)])
+endfor
