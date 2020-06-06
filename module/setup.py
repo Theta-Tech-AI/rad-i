@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="collage",
-    version="0.0.1",
+    name="collageradiomics",
+    version="0.0.3",
     author="Toth Technology",
     author_email="toth-tech@hillyer.me",
     description="CoLliage Implementation",
@@ -17,6 +17,15 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+    ],
+    install_requires=[
+        'matplotlib',
+        'numpy',
+        'scikit-learn',
+        'scikit-build',
+        'mahotas',
+        'scipy',
+        'SimpleITK'
     ],
     python_requires='>=3.7',
 )

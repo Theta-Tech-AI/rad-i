@@ -1,8 +1,0 @@
-README.md
-setup.py
-collage/__init__.py
-collage/collage.py
-collage.egg-info/PKG-INFO
-collage.egg-info/SOURCES.txt
-collage.egg-info/dependency_links.txt
-collage.egg-info/top_level.txt
