@@ -69,6 +69,9 @@ for i = 1:N
   for f = 1:13
     filename = [folder_name "/octave" num2str(f) ".tiff"];
     collage_slice = volfeats(:,:,f);
+    if max(collage_slice(:)) > 1
+      collage_slice = collage_slice / 1e4;
+    endif
     imwrite(collage_slice, filename);
   endfor
   
