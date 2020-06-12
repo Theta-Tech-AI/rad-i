@@ -4,4 +4,3 @@ scikit-learn
 scikit-build
 mahotas
 scipy
-SimpleITK

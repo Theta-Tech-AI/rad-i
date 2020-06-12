@@ -5,14 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="collageradiomics",
-    version="0.0.3",
+    version="0.0.1a15",
     author="Toth Technology",
     author_email="toth-tech@hillyer.me",
     description="CoLliage Implementation",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Toth-Technology/rad-i",
-    packages=setuptools.find_packages(),
+    py_modules=["collageradiomics"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
@@ -25,7 +25,6 @@ setuptools.setup(
         'scikit-build',
         'mahotas',
         'scipy',
-        'SimpleITK'
     ],
     python_requires='>=3.7',
 )
