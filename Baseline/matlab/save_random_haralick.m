@@ -3,10 +3,10 @@ raw_image = imread('../../sample_data/ImageSlice.png');
 raw_image = raw_image(:,:,1);
 
 % for random patch generation
-svd_radius_range = [5, 15];
+svd_radius_range = [5, 10];
 [raw_image_height, raw_image_width] = size(raw_image)
-patch_window_width_range  = raw_image_width  * [0.05, 0.2];
-patch_window_height_range = raw_image_height * [0.05, 0.2];
+patch_window_width_range  = raw_image_width  * [0.05, 0.1];
+patch_window_height_range = raw_image_height * [0.05, 0.1];
 mask_min_x_range = raw_image_width  * [0.2, 0.8];
 mask_min_y_range = raw_image_height * [0.2, 0.8];
 
@@ -67,11 +67,9 @@ for i = 1:N
   
   % save collage features images
   for f = 1:13
-    filename = [folder_name "/octave" num2str(f) ".tiff"];
+    filename = [folder_name "/collage" num2str(f) "_octave.png"];
     collage_slice = volfeats(:,:,f);
-    if max(collage_slice(:)) > 1
-      collage_slice = collage_slice / 1e4;
-    endif
+    collage_slice = uint8(255.0 / max(collage_slice(:)) * (collage_slice - min(collage_slice(:))));
     imwrite(collage_slice, filename);
   endfor
   

@@ -13,24 +13,24 @@ for i = 3:length(directory)
   for f = 1:13
 
     % load octave results
-    filename = [subfolder_name '/octave' num2str(f) '.tiff'];
+    filename = [subfolder_name '/octave' num2str(f) '.png'];
     octave_slice = imread(filename);
-    flattened_octave_features(f, :) = octave_slice(:);
+    flattened_octave_features(f, :) = double(octave_slice(:));
     
     % load python results
-    filename = [subfolder_name '/python' num2str(f) '.tiff'];
+    filename = [subfolder_name '/python' num2str(f) '.png'];
     try
       python_slice = imread(filename);
     catch
       % default to adding random noise for testing purposes
       python_slice = imnoise(octave_slice, "poisson");
     end_try_catch
-    flattened_python_features(f, :) = python_slice(:);
+    flattened_python_features(f, :) = double(python_slice(:));
     
   endfor
   
   % calculate percent difference
-  flattened_percent_differences = (flattened_python_features - flattened_octave_features) ./ (flattened_octave_features + eps);
+  flattened_percent_differences = (flattened_python_features - flattened_octave_features) / 256;
   
   % append
   all_percent_differences = [all_percent_differences, flattened_percent_differences];
